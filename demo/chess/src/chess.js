@@ -46,7 +46,7 @@ var Board = joint.dia.Paper.extend({
 
             model.set('position', p1);
 
-            this.trigger('piece:drop', model, this._p2n(p0), this._p2n(p1), function() {
+            this.trigger('piece:drop', this._p2n(p0), this._p2n(p1), function() {
                 model.set('position', p0);
             });
         });
@@ -72,7 +72,8 @@ var Board = joint.dia.Paper.extend({
     },
 
     movePiece: function(from, to, opts) {
-
+       console.log('hraju ', arguments);
+       
         opts = opts || {};
 
         var pc = this.at(from);
@@ -261,7 +262,7 @@ board.on('piece:touch', function(piece, from) {
     this.addPointers(from, this.whereToGo(from));
 });
 
-board.on('piece:drop', function(piece, from, to, undo) {
+board.on('piece:drop', function(from, to, undo) {
 
     this.removePointers();
 
